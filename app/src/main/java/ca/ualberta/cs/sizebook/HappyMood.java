@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by sydia on 1/19/17.
  */
 
-public class HappyMood extends Mood {
+public class HappyMood extends Person {
 
     private String newMood =  "I'm finally happy!";
 

@@ -4,7 +4,7 @@ android {
     buildToolsVersion '25.0.2'
 
     defaultConfig {
-        applicationId "ca.ualberta.cs.szebook"
+        applicationId "ca.ualberta.cs.sizebook"
         minSdkVersion 18
         targetSdkVersion 18
         compileOptions {

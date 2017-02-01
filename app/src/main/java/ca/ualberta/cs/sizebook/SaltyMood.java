@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by sydia on 1/19/17.
  */
 
-public class SaltyMood extends Mood {
+public class SaltyMood extends Person {
 
     private String newMood =  "I hate this world!";
 

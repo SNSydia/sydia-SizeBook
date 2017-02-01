@@ -11,7 +11,7 @@ public class NormalTweet extends Tweet {
         super(message);
     }
 
-    public NormalTweet(String message, Mood mood) {
+    public NormalTweet(String message, Person mood) {
         super(message, mood);
     }
 

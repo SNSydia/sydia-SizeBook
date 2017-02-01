@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class ImportantTweet extends Tweet {
 
-    public ImportantTweet(String message, Mood mood) {
+    public ImportantTweet(String message, Person mood) {
         super(message, mood);
     }
 
