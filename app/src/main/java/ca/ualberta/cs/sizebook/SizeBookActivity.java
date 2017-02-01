@@ -41,6 +41,7 @@ public class SizeBookActivity extends Activity {
 
 		Button saveButton = (Button) findViewById(R.id.save);
 		Button clearButton = (Button) findViewById(R.id.clear);
+		Button newPersonButton = (Button) findViewById(R.id.newPerson);
 
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
@@ -48,26 +49,32 @@ public class SizeBookActivity extends Activity {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				String text = bodyText.getText().toString();
 
+				String text = bodyText.getText().toString();
 				Tweet tweet = new NormalTweet(text);
 
 				tweetList.add(tweet);
-
 				adapter.notifyDataSetChanged();
-
 
 				saveInFile();
 				//finish();
-
 			}
 		});
 
 		clearButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				tweetList.clear();
 
+				tweetList.clear();
+				adapter.notifyDataSetChanged();
+
+				saveInFile();
+			}
+		});
+
+		newPersonButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				setResult(RESULT_OK);
 
 				adapter.notifyDataSetChanged();
 
