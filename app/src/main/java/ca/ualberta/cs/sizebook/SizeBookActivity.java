@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -76,9 +77,14 @@ public class SizeBookActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 
+				Intent intent = new Intent(SizeBookActivity.this, newPersonActivity.class); //Should this be at the beginning of the function?
+				startActivity(intent);
+
+
+				//setContentView(R.layout.activity_new_person);
 				adapter.notifyDataSetChanged();
 
-				saveInFile();
+				//saveInFile();
 			}
 		});
 	}
