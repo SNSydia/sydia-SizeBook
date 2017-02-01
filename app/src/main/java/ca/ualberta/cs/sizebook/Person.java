@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by sydia on 1/19/17.
  */
 
-public abstract class Mood {
+public abstract class Person {
     private Date date;
 
     public String getMood() {
@@ -19,13 +19,13 @@ public abstract class Mood {
 
     private String mood;
     // Constructor
-    public Mood(Date date, String mood) {
+    public Person(Date date, String mood) {
         this.date = date;
         this.mood = mood;
     }
 
     // Default Constructor
-    public Mood(){
+    public Person(){
         super();
         this.date = new Date();
     }
