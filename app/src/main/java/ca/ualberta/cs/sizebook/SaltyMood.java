@@ -1,4 +1,4 @@
-package ca.ualberta.cs.lonelytwitter;
+package ca.ualberta.cs.sizebook;
 
 import java.util.Date;
 
@@ -6,11 +6,11 @@ import java.util.Date;
  * Created by sydia on 1/19/17.
  */
 
-public class HappyMood extends Mood {
+public class SaltyMood extends Mood {
 
-    private String newMood =  "I'm finally happy!";
+    private String newMood =  "I hate this world!";
 
-    public HappyMood(Date date, String mood) {
+    public SaltyMood(Date date, String mood) {
         super(date, mood);
         setMood(newMood);
     }

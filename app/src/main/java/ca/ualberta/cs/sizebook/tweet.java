@@ -1,4 +1,4 @@
-package ca.ualberta.cs.lonelytwitter;
+package ca.ualberta.cs.sizebook;
 
 /**
  * Created by sydia on 1/19/17.

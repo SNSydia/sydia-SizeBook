@@ -1,4 +1,4 @@
-package ca.ualberta.cs.lonelytwitter;
+package ca.ualberta.cs.sizebook;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,9 +22,7 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import static android.R.id.list;
-
-public class LonelyTwitterActivity extends Activity {
+public class SizeBookActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;

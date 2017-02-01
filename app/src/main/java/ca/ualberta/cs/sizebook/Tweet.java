@@ -1,4 +1,4 @@
-package ca.ualberta.cs.lonelytwitter;
+package ca.ualberta.cs.sizebook;
 
 import java.util.ArrayList;
 import java.util.Date;
