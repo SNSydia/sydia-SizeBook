@@ -27,10 +27,13 @@ public class SizeBookActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
-	private ListView oldTweetsList;
+	private ListView oldPersonList;
 
-	private ArrayList<Tweet> tweetList;
-	private ArrayAdapter<Tweet> adapter;
+	public static ArrayList<Person> personList;
+	public static ArrayAdapter<Person> adapter;
+
+	public Person person;
+	public String name;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -44,17 +47,19 @@ public class SizeBookActivity extends Activity {
 		Button clearButton = (Button) findViewById(R.id.clear);
 		Button newPersonButton = (Button) findViewById(R.id.newPerson);
 
-		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+		oldPersonList = (ListView) findViewById(R.id.oldPersonListView);
+
+
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 
-				String text = bodyText.getText().toString();
-				Tweet tweet = new NormalTweet(text);
+				//String text = bodyText.getText().toString();
+				person = new Person();
+				personList.add(person);
 
-				tweetList.add(tweet);
 				adapter.notifyDataSetChanged();
 
 				saveInFile();
@@ -66,7 +71,7 @@ public class SizeBookActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 
-				tweetList.clear();
+				personList.clear();
 				adapter.notifyDataSetChanged();
 
 				saveInFile();
@@ -74,20 +79,42 @@ public class SizeBookActivity extends Activity {
 		});
 
 		newPersonButton.setOnClickListener(new View.OnClickListener() {
+
+
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 
 				Intent intent = new Intent(SizeBookActivity.this, newPersonActivity.class); //Should this be at the beginning of the function?
-				startActivity(intent);
+				startActivityForResult(intent, 0);
 
-
-				//setContentView(R.layout.activity_new_person);
 				adapter.notifyDataSetChanged();
 
-				//saveInFile();
+				saveInFile();
 			}
 		});
 	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == 0) {
+			if(resultCode == RESULT_OK){
+				person = new Person();
+				person.setPersonName(data.getStringExtra("name"));
+				//name = data.getStringExtra("name");
+				personList.add(person);
+
+				saveInFile(); // Very important to call. This is why it wasnt working.
+
+
+
+
+			}
+		}
+	}
+
+
+
 
 	@Override
 	protected void onStart() {
@@ -96,9 +123,9 @@ public class SizeBookActivity extends Activity {
 
 		loadFromFile();
 
-		adapter = new ArrayAdapter<Tweet>(this,
-				R.layout.list_item, tweetList);
-		oldTweetsList.setAdapter(adapter);
+		adapter = new ArrayAdapter<Person>(this,
+				R.layout.list_item, personList);
+		oldPersonList.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
 	}
 
@@ -111,12 +138,12 @@ public class SizeBookActivity extends Activity {
 			Gson gson = new Gson();
 
 			// Taken from
-			tweetList = gson.fromJson(in, new TypeToken<ArrayList<NormalTweet>>(){}.getType());
+			personList = gson.fromJson(in, new TypeToken<ArrayList<Person>>(){}.getType());
 
 			fis.close();
 		} catch (FileNotFoundException e) {
 
-			tweetList = new ArrayList<Tweet>();
+			personList = new ArrayList<Person>();
 		} catch (IOException e) {
 			throw new RuntimeException();
 		}
@@ -129,7 +156,7 @@ public class SizeBookActivity extends Activity {
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
 
 			Gson gson = new Gson();
-			gson.toJson(tweetList, out);
+			gson.toJson(personList, out);
 
 			out.flush();
 
