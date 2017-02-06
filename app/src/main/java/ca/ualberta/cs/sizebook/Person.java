@@ -95,6 +95,6 @@ public class Person implements Serializable {
     }
 
     public String toString(){
-        return "Name: " + personName + "\nDate:" + dateInput;
+        return "Name: " + personName + "\nDate: " + dateInput;
     }
 }

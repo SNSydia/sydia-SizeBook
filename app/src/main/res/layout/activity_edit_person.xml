@@ -9,88 +9,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ca.ualberta.cs.sizebook.newPersonActivity">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:layout_below="@+id/PersonName"
-        android:layout_alignEnd="@+id/PersonName"
-        android:id="@+id/DateInput"
-        android:hint="Date: " />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/ChestCircumference"
-        android:layout_below="@+id/BustCircumference"
-        android:layout_alignParentStart="true"
-        android:hint="Chest Circumference (Inches):" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/WaistCircumference"
-        android:layout_below="@+id/ChestCircumference"
-        android:layout_alignParentStart="true"
-        android:hint="Waist Circumference (Inches):"
-        android:inputType="numberDecimal" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_below="@+id/WaistCircumference"
-        android:layout_alignParentStart="true"
-        android:id="@+id/HipCircumference"
-        android:inputType="numberDecimal"
-        android:hint="Hip Circumference (Inches):" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_below="@+id/HipCircumference"
-        android:layout_alignParentStart="true"
-        android:id="@+id/InseamLength"
-        android:inputType="numberDecimal"
-        android:hint="Inseam Length (Inches):" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_below="@+id/InseamLength"
-        android:layout_alignParentStart="true"
-        android:id="@+id/PersonComment"
-        android:inputType="textMultiLine|textLongMessage"
-        android:hint="Comment:" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/NeckCircumference"
-        android:hint="Neck Circumference (Inches):"
-        android:layout_below="@+id/DateInput"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/BustCircumference"
-        android:hint="Bust Circumference (Inches):"
-        android:layout_marginTop="42dp"
-        android:layout_below="@+id/DateInput"
-        android:layout_alignParentStart="true" />
+    tools:context="ca.ualberta.cs.sizebook.newPersonActivity"
+    android:scrollbars="vertical"
+    android:isScrollContainer="true"
+    android:orientation="vertical">
 
     <TextView
         android:text="View/Edit person:"
@@ -101,30 +23,131 @@
         android:layout_alignParentStart="true"
         android:textSize="24sp" />
 
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/PersonName"
-        android:hint="Name:"
+        android:layout_height="match_parent"
         android:layout_below="@+id/EditPersonTitle"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:fillViewport="true">
 
-    <Button
-        android:text="Save Person"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/SavePersonButton"
-        android:layout_above="@+id/CancelEdit"
-        android:layout_alignParentStart="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@+id/EditPersonTitle"
+            android:layout_alignParentStart="true">
 
-    <Button
-        android:text="Cancel"
-        android:layout_height="wrap_content"
-        android:id="@+id/CancelEdit"
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/PersonName"
+                android:hint="Name:"
+                android:layout_below="@+id/EditPersonTitle"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:layout_below="@+id/PersonName"
+                android:layout_alignEnd="@+id/PersonName"
+                android:id="@+id/DateInput"
+                android:hint="Date: " />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/NeckCircumference"
+                android:hint="Neck Circumference (Inches):"
+                android:layout_below="@+id/DateInput"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/BustCircumference"
+                android:hint="Bust Circumference (Inches):"
+                android:layout_below="@+id/NeckCircumference"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/ChestCircumference"
+                android:layout_below="@+id/BustCircumference"
+                android:layout_alignParentStart="true"
+                android:hint="Chest Circumference (Inches):" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/WaistCircumference"
+                android:layout_below="@+id/ChestCircumference"
+                android:layout_alignParentStart="true"
+                android:hint="Waist Circumference (Inches):"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_below="@+id/WaistCircumference"
+                android:layout_alignParentStart="true"
+                android:id="@+id/HipCircumference"
+                android:inputType="numberDecimal"
+                android:hint="Hip Circumference (Inches):" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_below="@+id/HipCircumference"
+                android:layout_alignParentStart="true"
+                android:id="@+id/InseamLength"
+                android:inputType="numberDecimal"
+                android:hint="Inseam Length (Inches):" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_below="@+id/InseamLength"
+                android:layout_alignParentStart="true"
+                android:id="@+id/PersonComment"
+                android:inputType="textMultiLine|textLongMessage"
+                android:hint="Comment:"
+                android:singleLine="false"
+                android:maxLines="3" />
+
+            <Button
+                android:text="Cancel"
+                android:layout_height="wrap_content"
+                android:id="@+id/CancelEdit"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_below="@+id/PersonComment"
+                android:layout_alignParentStart="true" />
+
+            <Button
+            android:text="Save Person"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/SavePersonButton"
+                android:layout_weight="1"
+                android:layout_below="@+id/CancelEdit"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
