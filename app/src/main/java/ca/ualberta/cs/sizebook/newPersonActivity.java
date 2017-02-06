@@ -17,6 +17,7 @@ import android.widget.Toast;
  * then it sends the information back to SizeBookActivity
  * through Intents, where the information will be handled by SizeBookActivity.onActivityResult().
  */
+
 public class newPersonActivity extends Activity{
 
     /**
