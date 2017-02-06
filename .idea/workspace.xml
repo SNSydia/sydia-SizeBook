@@ -21,10 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2e3a3796-a232-460d-ab26-d248b4c7ec55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/EditPersonActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/EditPersonActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/Person.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/Person.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/SizeBookActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/SizeBookActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/newPersonActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/newPersonActivity.java" />
     </list>
     <ignored path="CMPUT-301---Assigment-1.iws" />
     <ignored path=".idea/workspace.xml" />
