@@ -26,11 +26,21 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Sizebook activity is the main app activity. It handles the
+ * calling of other activities to add a new person, edit, or delete a person.
+ */
+
 public class SizeBookActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
 	private TextView personCountText;
 	private ListView oldPersonList;
+
+	/**
+	 * personList is a list of Person objects
+	 * in which the app uses to keep track of each person added/deleted/modified.
+	 */
 
 	public static ArrayList<Person> personList;
 	private ArrayAdapter<Person> adapter;
@@ -46,21 +56,22 @@ public class SizeBookActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-
-
+		oldPersonList = (ListView) findViewById(R.id.oldPersonListView);
 		personCountText = (TextView) findViewById(R.id.PersonCountText);
 		personCountText.setText("People: " + String.valueOf(personCount));
 
 		Button newPersonButton = (Button) findViewById(R.id.newPerson);
 
-		oldPersonList = (ListView) findViewById(R.id.oldPersonListView);
-
+		/**
+		 * Sets listener for when a person in the display list is clicked.
+		 * It will automatically launch EditPersonActivity
+		 */
 		oldPersonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 				setResult(RESULT_OK);
 				personIndex = position;
 
-				Intent intent = new Intent(SizeBookActivity.this, EditPersonActivity.class); //Should this be at the beginning of the function?
+				Intent intent = new Intent(SizeBookActivity.this, EditPersonActivity.class);
 				intent.putExtra("personIndex", String.valueOf(personIndex));
 				startActivityForResult(intent, 1);
 
@@ -70,6 +81,9 @@ public class SizeBookActivity extends Activity {
 			}
 		});
 
+		/**
+		 * Method below will delete a person if they are held for 1 second.
+		 */
 		oldPersonList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 			public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
 				setResult(RESULT_OK);
@@ -82,6 +96,9 @@ public class SizeBookActivity extends Activity {
 
 				adapter.notifyDataSetChanged();
 
+				/**
+				 * Display a user message that the selected person was deleted
+				 */
 				Context context = getApplicationContext();
 				String text = "Person Deleted";
 				int duration = Toast.LENGTH_SHORT;
@@ -94,6 +111,13 @@ public class SizeBookActivity extends Activity {
 				return true;
 			}
 		});
+
+		/**
+		 * Sets a listener for when the 'Add Person' button is pressed.
+		 * It launches the class newPersonActivity.
+		 *
+		 * Intents are used to pass data between activities
+		 */
 
 		newPersonButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -108,6 +132,19 @@ public class SizeBookActivity extends Activity {
 		});
 	}
 
+	/**
+	 * onActivityResult is a method which performs various tasks based on
+	 * which child activity had been called. In this implimentation, it handles
+	 * results obtained from either newPersonActivity or EditPersonActivity.
+	 * Data is passed from activities through Intents.
+	 *
+	 * @param requestCode is used implicitly by android.
+	 * @param resultCode is important as it shows whether the resultant activity was
+	 *                   from newPersonActivity (resultCode == 0)
+	 *                   or EditPersonActivity (resultCode == 1)
+	 * @param data	is used to get data from Intents from child activity to parent.
+     */
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -115,6 +152,10 @@ public class SizeBookActivity extends Activity {
 			if(resultCode == RESULT_OK){
 				person = new Person();
 
+				/**
+				 * sets the properties of the newly created Person()
+				 * Gets properties from newPersonActivity, sent through Intents
+				 */
 				person.setPersonName(data.getStringExtra("name"));
 				person.setDateInput(data.getStringExtra("date"));
 				person.setNeckCircumference(data.getStringExtra("neck"));
@@ -137,6 +178,10 @@ public class SizeBookActivity extends Activity {
 		if (requestCode == 1){
 			if (resultCode == RESULT_OK) {
 
+				/**
+				 * Sets the properties of a preexisting person inside PersonList.
+				 * Gets properties from EditPersonActivity, sent through Intents
+				 */
 				personList.get(personIndex).setPersonName(data.getStringExtra("name"));
 				personList.get(personIndex).setDateInput(data.getStringExtra("date"));
 				personList.get(personIndex).setNeckCircumference(data.getStringExtra("neck"));
@@ -146,14 +191,16 @@ public class SizeBookActivity extends Activity {
 				personList.get(personIndex).setHipCircumference(data.getStringExtra("hip"));
 				personList.get(personIndex).setInseamLength(data.getStringExtra("inseam"));
 				personList.get(personIndex).setPersonComment(data.getStringExtra("comment"));
+
 				saveInFile();
 			}
 		}
 	}
 
 
-
-
+	/**
+	 * Initializes properties upon starting of the application.
+	 */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -171,6 +218,10 @@ public class SizeBookActivity extends Activity {
 		personCountText.setText("People: " + String.valueOf(personCount));
 	}
 
+	/**
+	 * Loads the saved local file.
+	 * Person objects are saved as GSON objects in the saved file.
+	 */
 	private void loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
@@ -189,7 +240,11 @@ public class SizeBookActivity extends Activity {
 			throw new RuntimeException();
 		}
 	}
-	
+
+	/**
+	 * Saves the content of personList as GSON objects.
+	 * The file is saved locally.
+	 */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,

@@ -6,9 +6,19 @@ import java.io.Serializable;
  * Created by juice on 04/02/17.
  */
 
+/**
+ * Person is a class to store measurments of various body parts.
+ * This class is created by SizeBookActivity.
+ *
+ * Serializable was implimented to Serialize the Person object
+ * so it can be Passed between activities if needed.
+ */
 public class Person implements Serializable {
 
 
+    /**
+     *  Declaring variables for bodypart measurements.
+     */
     private String personName;
     private String dateInput;
     private String neckCircumference;
@@ -19,6 +29,9 @@ public class Person implements Serializable {
     private String inseamLength;
     private String personComment;
 
+    /**
+     * Getters and setters for every bodypart measurement
+     */
     public String getPersonName() {
         return personName;
     }
@@ -94,6 +107,10 @@ public class Person implements Serializable {
     public Person() {
     }
 
+    /**
+     * formats name and date of a person, to display in SizeBookActivity.oldPersonList
+     * @return String
+     */
     public String toString(){
         return "Name: " + personName + "\nDate: " + dateInput;
     }

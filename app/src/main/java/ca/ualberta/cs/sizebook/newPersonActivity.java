@@ -9,8 +9,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * newPersonActivity is a class designed to handle gathering user input for
+ * adding a new person.
+ *
+ * it performs by gathering information entered in EditTexts, and
+ * then it sends the information back to SizeBookActivity
+ * through Intents, where the information will be handled by SizeBookActivity.onActivityResult().
+ */
 public class newPersonActivity extends Activity{
 
+    /**
+     * Declaring EditText fields
+     */
     private EditText personName;
     private EditText dateInput;
     private EditText neckCircumference;
@@ -21,8 +32,10 @@ public class newPersonActivity extends Activity{
     private EditText inseamLength;
     private EditText personComment;
 
-
-
+    /**
+     * onCreate will initialize values upon beginning the activity.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +54,14 @@ public class newPersonActivity extends Activity{
 
         Button savePerson = (Button) findViewById(R.id.SavePersonButton);
 
+        /**
+         * Set a listener for the 'Save Person' button.
+         * We declare an intent in order to send user input to the parent activity.
+         *
+         * intent.putExtra(...) adds data to the intent.
+         */
         savePerson.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 Intent intent = new Intent();
 
                 if (!personName.getText().toString().trim().equals("")) {
