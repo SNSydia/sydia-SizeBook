@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static ca.ualberta.cs.sizebook.SizeBookActivity.adapter;
 import static ca.ualberta.cs.sizebook.SizeBookActivity.personList;
 
 
@@ -98,10 +97,5 @@ public class EditPersonActivity extends Activity{
                 finish();
             }
         });
-
-
-
-
-
     }
 }

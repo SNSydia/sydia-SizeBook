@@ -33,7 +33,7 @@ public class SizeBookActivity extends Activity {
 	private ListView oldPersonList;
 
 	public static ArrayList<Person> personList;
-	public static ArrayAdapter<Person> adapter;
+	private ArrayAdapter<Person> adapter;
 
 	private int personCount = 0;
 	private int personIndex = 0;

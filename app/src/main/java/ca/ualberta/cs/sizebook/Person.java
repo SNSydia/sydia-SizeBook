@@ -1,7 +1,6 @@
 package ca.ualberta.cs.sizebook;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by juice on 04/02/17.
@@ -93,13 +92,9 @@ public class Person implements Serializable {
     }
 
     public Person() {
-        this.personName = "Shawn";
     }
 
-
-
-
     public String toString(){
-        return personName + "\n" + dateInput + "\n" + neckCircumference;
+        return "Name: " + personName + "\nDate:" + dateInput;
     }
 }

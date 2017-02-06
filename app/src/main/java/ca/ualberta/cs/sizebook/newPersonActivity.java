@@ -9,10 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static ca.ualberta.cs.sizebook.SizeBookActivity.adapter;
-import static ca.ualberta.cs.sizebook.SizeBookActivity.personList;
-
-
 public class newPersonActivity extends Activity{
 
     private EditText personName;
