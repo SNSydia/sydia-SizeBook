@@ -15,10 +15,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,14 +29,16 @@ import com.google.gson.reflect.TypeToken;
 public class SizeBookActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
-	private EditText bodyText;
+	private TextView personCountText;
 	private ListView oldPersonList;
 
 	public static ArrayList<Person> personList;
 	public static ArrayAdapter<Person> adapter;
 
+	private int personCount = 0;
+	private int personIndex = 0;
+
 	public Person person;
-	public String name;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -41,55 +46,64 @@ public class SizeBookActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		bodyText = (EditText) findViewById(R.id.body);
 
-		Button saveButton = (Button) findViewById(R.id.save);
-		Button clearButton = (Button) findViewById(R.id.clear);
+
+		personCountText = (TextView) findViewById(R.id.PersonCountText);
+		personCountText.setText("People: " + String.valueOf(personCount));
+
 		Button newPersonButton = (Button) findViewById(R.id.newPerson);
 
 		oldPersonList = (ListView) findViewById(R.id.oldPersonListView);
 
-
-
-		saveButton.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
+		oldPersonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 				setResult(RESULT_OK);
+				personIndex = position;
 
-				//String text = bodyText.getText().toString();
-				person = new Person();
-				personList.add(person);
+				Intent intent = new Intent(SizeBookActivity.this, EditPersonActivity.class); //Should this be at the beginning of the function?
+				intent.putExtra("personIndex", String.valueOf(personIndex));
+				startActivityForResult(intent, 1);
 
 				adapter.notifyDataSetChanged();
 
-				saveInFile();
-				//finish();
+
 			}
 		});
 
-		clearButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
+		oldPersonList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+			public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
 				setResult(RESULT_OK);
+				personIndex = position;
 
-				personList.clear();
+				personList.remove(personIndex);
+				personCount--;
+
+				personCountText.setText("People: " + String.valueOf(personCount));
+
 				adapter.notifyDataSetChanged();
 
+				Context context = getApplicationContext();
+				String text = "Person Deleted";
+				int duration = Toast.LENGTH_SHORT;
+
+				Toast toast = Toast.makeText(context, text, duration);
+				toast.show();
+
 				saveInFile();
+
+				return true;
 			}
 		});
 
 		newPersonButton.setOnClickListener(new View.OnClickListener() {
-
-
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 
 				Intent intent = new Intent(SizeBookActivity.this, newPersonActivity.class); //Should this be at the beginning of the function?
+
 				startActivityForResult(intent, 0);
 
 				adapter.notifyDataSetChanged();
-
-				saveInFile();
 			}
 		});
 	}
@@ -100,15 +114,39 @@ public class SizeBookActivity extends Activity {
 		if (requestCode == 0) {
 			if(resultCode == RESULT_OK){
 				person = new Person();
+
 				person.setPersonName(data.getStringExtra("name"));
-				//name = data.getStringExtra("name");
+				person.setDateInput(data.getStringExtra("date"));
+				person.setNeckCircumference(data.getStringExtra("neck"));
+				person.setBustCircumference(data.getStringExtra("bust"));
+				person.setChestCircumference(data.getStringExtra("chest"));
+				person.setWaistCircumference(data.getStringExtra("waist"));
+				person.setHipCircumference(data.getStringExtra("hip"));
+				person.setInseamLength(data.getStringExtra("inseam"));
+				person.setPersonComment(data.getStringExtra("comment"));
+
 				personList.add(person);
+				personCount++;
 
-				saveInFile(); // Very important to call. This is why it wasnt working.
+				personCountText.setText("People: " + String.valueOf(personCount));
 
+				saveInFile();
+			}
+		}
 
+		if (requestCode == 1){
+			if (resultCode == RESULT_OK) {
 
-
+				personList.get(personIndex).setPersonName(data.getStringExtra("name"));
+				personList.get(personIndex).setDateInput(data.getStringExtra("date"));
+				personList.get(personIndex).setNeckCircumference(data.getStringExtra("neck"));
+				personList.get(personIndex).setBustCircumference(data.getStringExtra("bust"));
+				personList.get(personIndex).setChestCircumference(data.getStringExtra("chest"));
+				personList.get(personIndex).setWaistCircumference(data.getStringExtra("waist"));
+				personList.get(personIndex).setHipCircumference(data.getStringExtra("hip"));
+				personList.get(personIndex).setInseamLength(data.getStringExtra("inseam"));
+				personList.get(personIndex).setPersonComment(data.getStringExtra("comment"));
+				saveInFile();
 			}
 		}
 	}
@@ -126,11 +164,14 @@ public class SizeBookActivity extends Activity {
 		adapter = new ArrayAdapter<Person>(this,
 				R.layout.list_item, personList);
 		oldPersonList.setAdapter(adapter);
+
 		adapter.notifyDataSetChanged();
+
+		personCount = oldPersonList.getCount();
+		personCountText.setText("People: " + String.valueOf(personCount));
 	}
 
 	private void loadFromFile() {
-		//ArrayList<String> tweets = new ArrayList<String>();
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
 			BufferedReader in = new BufferedReader(new InputStreamReader(fis));

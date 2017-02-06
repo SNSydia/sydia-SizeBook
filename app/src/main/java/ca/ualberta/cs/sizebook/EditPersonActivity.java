@@ -13,7 +13,7 @@ import static ca.ualberta.cs.sizebook.SizeBookActivity.adapter;
 import static ca.ualberta.cs.sizebook.SizeBookActivity.personList;
 
 
-public class newPersonActivity extends Activity{
+public class EditPersonActivity extends Activity{
 
     private EditText personName;
     private EditText dateInput;
@@ -25,13 +25,15 @@ public class newPersonActivity extends Activity{
     private EditText inseamLength;
     private EditText personComment;
 
+    private int personIndex = 0;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_new_person);
+        setContentView(R.layout.activity_edit_person);
 
         personName = (EditText) findViewById(R.id.PersonName);
         dateInput = (EditText) findViewById(R.id.DateInput);
@@ -44,6 +46,21 @@ public class newPersonActivity extends Activity{
         personComment = (EditText) findViewById(R.id.PersonComment);
 
         Button savePerson = (Button) findViewById(R.id.SavePersonButton);
+        Button cancel = (Button) findViewById(R.id.CancelEdit);
+
+        personIndex = Integer.valueOf(getIntent().getExtras().getString("personIndex"));
+
+
+        personName.setText(personList.get(personIndex).getPersonName());
+        dateInput.setText(personList.get(personIndex).getDateInput());
+        neckCircumference.setText(personList.get(personIndex).getNeckCircumference());
+        bustCircumference.setText(personList.get(personIndex).getBustCircumference());
+        chestCircumference.setText(personList.get(personIndex).getChestCircumference());
+        waistCircumference.setText(personList.get(personIndex).getWaistCircumference());
+        hipCircumference.setText(personList.get(personIndex).getHipCircumference());
+        inseamLength.setText(personList.get(personIndex).getInseamLength());
+        personComment.setText(personList.get(personIndex).getPersonComment());
+
 
         savePerson.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -75,6 +92,14 @@ public class newPersonActivity extends Activity{
                 }
             }
         });
+
+        cancel.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                finish();
+            }
+        });
+
+
 
 
 
