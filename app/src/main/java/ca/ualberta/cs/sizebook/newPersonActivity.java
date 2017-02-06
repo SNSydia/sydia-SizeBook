@@ -22,6 +22,7 @@ public class newPersonActivity extends Activity{
     /**
      * Declaring EditText fields
      */
+
     private EditText personName;
     private EditText dateInput;
     private EditText neckCircumference;

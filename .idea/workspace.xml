@@ -19,7 +19,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2e3a3796-a232-460d-ab26-d248b4c7ec55" name="Default" comment="" />
+    <list default="true" id="2e3a3796-a232-460d-ab26-d248b4c7ec55" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/newPersonActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/newPersonActivity.java" />
+    </list>
     <ignored path="CMPUT-301---Assigment-1.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,8 +76,8 @@
       <file leaf-file-name="newPersonActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/newPersonActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="59" column="10" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
+            <state relative-caret-position="306">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1698,10 +1700,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_new_person.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_edit_person.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/newPersonActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/EditPersonActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/Person.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/SizeBookActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/newPersonActivity.java" />
       </list>
     </option>
   </component>
@@ -2266,8 +2268,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ca/ualberta/cs/sizebook/newPersonActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="59" column="10" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
+        <state relative-caret-position="306">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
